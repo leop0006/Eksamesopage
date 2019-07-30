@@ -60,6 +60,7 @@ import java.security.SecureRandom;
  * @author Damien Miller
  * @version 0.2
  */
+
 public class BCrypt {
 	// BCrypt parameters
 	private static final int GENSALT_DEFAULT_LOG2_ROUNDS = 10;
@@ -507,7 +508,6 @@ public class BCrypt {
 		lr[off] = r ^ P[BLOWFISH_NUM_ROUNDS + 1];
 		lr[off + 1] = l;
 	}
-
 	/**
 	 * Cycically extract a word of key material
 	 * @param data	the string to extract the data from

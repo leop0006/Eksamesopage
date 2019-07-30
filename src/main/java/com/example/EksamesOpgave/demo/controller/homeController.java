@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 public class homeController {
-
     @Autowired
     BrugerService brugerService;
 
@@ -45,10 +44,21 @@ public class homeController {
     @PostMapping("/actionPage")
     public String goActionPage(){ return "redirect:/actionPage"; }
 
+    /*
     @GetMapping("/brugerdata")
     public String brugerdata(Model model){
         model.addAttribute("bruger", brugerService.fetchAllBruger());
         return "brugerdata";
+    }
+    */
+
+    @GetMapping("/brugerdata")
+    public String brugerData(){
+        return "brugerdata";
+    }
+    @PostMapping("/brugerdata")
+    public String brugerdata(){
+        return "redirect:/brugerdata";
     }
 
     @GetMapping("/create")
@@ -79,14 +89,11 @@ public class homeController {
         return "redirect:/borrow";
     }
 
-
     @GetMapping("/opdater/{brugerId}")
     public String opdaterBruger(@PathVariable("brugerId") int brugerId, Model model){
         model.addAttribute("bruger", brugerService.readById(brugerId));
         return "opdater";
     }
-
-
     @PostMapping("/opdater")
     public String opdateringfærdig(@ModelAttribute Bruger bruger){
         brugerService.updateBruger(bruger);
@@ -98,7 +105,4 @@ public class homeController {
         brugerService.deleteById(brugerId);
         return "redirect:/createBruger";
     }
-
-
-
 }
